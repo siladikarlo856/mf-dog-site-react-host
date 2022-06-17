@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import mountHeader from "home/mountHeader";
-
 import "./index.css";
 
-mountHeader('#header');
+const launchHeader = () => {
+  import('home/mountHeader')
+    .then(mountHeader => {
+      mountHeader.default('#header');
+    }) 
+}
 
 const App = () => (
   <div className="container">
@@ -13,6 +16,9 @@ const App = () => (
     <div>Framework: react</div>
     <div>Language: JavaScript</div>
     <div>CSS: Empty CSS</div>
+    <div>
+      <button onClick={launchHeader}>Launch Header</button>
+    </div>
   </div>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
